@@ -1,11 +1,11 @@
 <section class="main">
-	<Proc />
-	<Mem />
+	<System />
+	<Services />
 </section>
 
 
 <script>
-import Proc from '../stat-proc';
-import Mem from '../stat-mem';
+import System from '../stat-system';
+import Services from '../stat-services';
 
 </script>

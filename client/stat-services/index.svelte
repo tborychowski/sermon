@@ -1,18 +1,19 @@
 <div class="panel">
 	<div class="title">
-		<h2>Memory</h2>
+		<h2>Services</h2>
 		<button on:click="{refresh}">Refresh</button>
 	</div>
 	<div class="content">
-		{JSON.stringify($mem)}
+		{JSON.stringify(data)}
 	</div>
 </div>
 
 <script>
-import {mem} from '../store';
-import {EVENT} from '../lib';
+import {EVENT, get} from '../lib';
+let data = {};
 
-const refresh = () => mem.reload();
+const refresh = async () => data = await get('services');
+
 
 EVENT.on(EVENT.refresh.all, refresh);
 refresh();
