@@ -1,0 +1,8 @@
+{
+	"services": [
+		{ "name": "Adguard", "url": "https://ag.borychowski.net" },
+		{ "name": "Monitor", "url": "https://monitor.borychowski.net" },
+		{ "name": "Fake", "url": "https://192.168.1.123" },
+		{ "name": "Google", "url": "https://google.com" }
+	]
+}

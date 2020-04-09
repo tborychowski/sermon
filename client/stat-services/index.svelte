@@ -4,13 +4,24 @@
 		<button on:click="{refresh}">Refresh</button>
 	</div>
 	<div class="content">
-		{JSON.stringify(data)}
+		{#each data as service}
+		<div>
+			<em>{service.name}</em> {service.url}
+			{#if service.running}
+				<b>ON</b>
+			{:else}
+				<b>OFF</b>
+			{/if}
+			<br>
+			<span>Ping: {service.duration}ms</span>
+		</div>
+		{/each}
 	</div>
 </div>
 
 <script>
 import {EVENT, get} from '../lib';
-let data = {};
+let data = [];
 
 const refresh = async () => data = await get('services');
 

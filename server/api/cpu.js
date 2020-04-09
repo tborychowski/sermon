@@ -1,4 +1,4 @@
-const {readFile, exists, run} = require('./util');
+const {readFile, exists, run} = require('../lib/util');
 const os = require('os');
 const path = require('path');
 
@@ -41,17 +41,20 @@ function getUptime () {
 		// const time = str.substr(0, 5);
 		str = str.trim();
 		const up_usrs = str.substring(str.indexOf('up') + 3, str.indexOf(', load'));
-		const up = up_usrs.split(', ').slice(0, -1).join(', ');
+		const uptime = up_usrs.split(', ').slice(0, -1).join(', ');
 		const users = up_usrs.split(', ').pop();
-		const avgs = str.split(' ').slice(-3);
-		return {up, users, avgs};
+		const load = str.split(' ').slice(-3);
+		return {load, uptime, users};
 	});
 }
 
 
 module.exports =  async () => {
-	const info = await getCpuInfo();
+	const cpuData = await getCpuInfo();
 	const temp = await getCpuTemp();
-	const uptimedata = await getUptime();
-	return {...info, temp, ...uptimedata };
+	const upData = await getUptime();
+
+	const cpu = cpuData.name;
+	const {load, uptime, users} = upData;
+	return {cpu, load, temp, uptime, users };
 };

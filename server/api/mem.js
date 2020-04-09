@@ -1,10 +1,8 @@
-const {readFile} = require('./util');
 const {EOL} = require('os');
 const path = require('path');
-const {formatBytes} = require('./util');
-
-// const meminfo = '/proc/meminfo';
+const {readFile, formatBytes} = require('../lib/util');
 const meminfo = path.join(process.cwd(), 'proc/meminfo');
+// const meminfo = '/proc/meminfo';
 
 
 function parseInfo (info) {
@@ -24,17 +22,16 @@ function parseInfo (info) {
 	const buffers = parseFloat(data.Buffers.value);
 	const cached = parseFloat(data.Cached.value);
 
-	const free = memfree + buffers + cached;
-	const total = data.MemTotal.value || 0;
-	const used = total - free;
-	const percent = 100 - (Math.round(free / total * 100));
+	const memFree = memfree + buffers + cached;
+	const memTotal = data.MemTotal.value || 0;
+	const memUsed = memTotal - memFree;
+	const memPercent = 100 - (Math.round(memFree / memTotal * 100));
 	return {
-		free: formatBytes(free, 1),
-		total: formatBytes(total, 1),
-		used: formatBytes(used, 1),
-		percent,
+		memFree: formatBytes(memFree, 1),
+		memTotal: formatBytes(memTotal, 1),
+		memUsed: formatBytes(memUsed, 1),
+		memPercent,
 	};
 }
-
 
 module.exports =  () => readFile(meminfo).then(parseInfo);
