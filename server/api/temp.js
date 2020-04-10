@@ -1,7 +1,7 @@
 const { readFile } = require('../lib/util');
 const path = require('path');
 
-// const zoneTemp = '/sys/class/thermal/thermal_zone0/temp';
+// /sys/class/thermal/thermal_zone0/temp
 const zoneTemp = path.join(process.cwd(), '/proc/temp');
 
 

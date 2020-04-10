@@ -1,8 +1,6 @@
 const {readFile} = require('../lib/util');
 const os = require('os');
 const path = require('path');
-
-// const cpuinfo = '/proc/cpuinfo';
 const cpuinfo = path.join(process.cwd(), 'proc/cpuinfo');
 
 function parseInfo (info) {

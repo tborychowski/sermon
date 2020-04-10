@@ -2,7 +2,7 @@ const { readFile } = require('../lib/util');
 const { EOL } = require('os');
 const path = require('path');
 
-// const fname = '/etc/os-release';
+// /etc/os-release
 const fname = path.join(process.cwd(), 'proc/os-release');
 
 

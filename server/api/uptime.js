@@ -1,7 +1,6 @@
 const { readFile, timeAgo } = require('../lib/util');
 const path = require('path');
 
-// const uptimeinfo = '/proc/uptime';
 const uptimeinfo = path.join(process.cwd(), 'proc/uptime');
 
 

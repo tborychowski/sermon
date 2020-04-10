@@ -1,7 +1,5 @@
 const { readFile } = require('../lib/util');
 const path = require('path');
-
-// const loadAvg = '/proc/loadavg';
 const loadAvg = path.join(process.cwd(), 'proc/loadavg');
 
 

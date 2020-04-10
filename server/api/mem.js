@@ -2,7 +2,6 @@ const {EOL} = require('os');
 const path = require('path');
 const {readFile, formatBytes} = require('../lib/util');
 const meminfo = path.join(process.cwd(), 'proc/meminfo');
-// const meminfo = '/proc/meminfo';
 
 
 function parseInfo (info) {
