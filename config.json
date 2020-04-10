@@ -1,9 +1,8 @@
 {
 	"services": [
-		{ "name": "DNS", "url": "192.168.1.10:53", "type": "tcp" },
-		{ "name": "Adguard", "url": "https://ag.borychowski.net" },
-		{ "name": "Monitor", "url": "https://monitor.borychowski.net" },
+		{ "name": "Google", "url": "https://google.com" },
+		{ "name": "Facebook", "url": "https://facebook.com" },
 		{ "name": "Fake", "url": "https://192.168.1.123" },
-		{ "name": "Google", "url": "https://google.com" }
+		{ "name": "DNS", "url": "192.168.1.10:53", "type": "tcp" }
 	]
 }

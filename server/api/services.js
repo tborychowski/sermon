@@ -7,7 +7,7 @@ const {tcp, request} = require('../lib/request');
 let config;
 
 function getConfig () {
-	config = config || fs.readJsonSync(configPath);
+	config = fs.readJsonSync(configPath);
 	return config.services;
 }
 
