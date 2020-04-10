@@ -25,7 +25,7 @@ function parseInfo (info) {
 
 function getCpuTemp () {
 	const zoneTemp = '/sys/class/thermal/thermal_zone0/temp';
-	if (!exists(zoneTemp)) return Promise.resolve(100);
+	if (!exists(zoneTemp)) return Promise.resolve(50);
 	return readFile(zoneTemp).then(t => parseInt(t, 10) / 1000);
 }
 
@@ -38,13 +38,13 @@ function getCpuInfo () {
 function getUptime () {
 	//12:42  up 8 days, 47 mins, 3 users, load averages: 1.69 1.81 1.87
 	return run('/usr/bin/uptime').then(str => {
-		// const time = str.substr(0, 5);
 		str = str.trim();
+		const time = str.substr(0, 5);
 		const up_usrs = str.substring(str.indexOf('up') + 3, str.indexOf(', load'));
 		const uptime = up_usrs.split(', ').slice(0, -1).join(', ');
-		const users = up_usrs.split(', ').pop();
+		const users = up_usrs.split(', ').pop().split(' ')[0];
 		const load = str.split(' ').slice(-3);
-		return {load, uptime, users};
+		return {time, load, uptime, users};
 	});
 }
 
@@ -55,6 +55,6 @@ module.exports =  async () => {
 	const upData = await getUptime();
 
 	const cpu = cpuData.name;
-	const {load, uptime, users} = upData;
-	return {cpu, load, temp, uptime, users };
+	const {load, time, uptime, users} = upData;
+	return {cpu, load, temp, time, uptime, users };
 };

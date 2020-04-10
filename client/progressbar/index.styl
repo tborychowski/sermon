@@ -1,0 +1,28 @@
+@import "lib"
+
+// .progressbar
+
+.progressbar-bar
+	height 10
+	background-color dark-color-bg1
+	border-radius 5
+	display flex
+	align-items stretch
+	justify-content flex-start
+
+.progressbar-progress
+	border-radius 5 0 0 5
+	margin 2
+
+.progressbar-label
+	text-align center
+	padding 5 10
+
+.info .progressbar-progress
+	background-color color-success
+
+.warning .progressbar-progress
+	background-color color-warning
+
+.alert .progressbar-progress
+	background-color color-danger

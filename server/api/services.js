@@ -12,8 +12,7 @@ function getConfig () {
 }
 
 function pingService (service) {
-	const fn = (service.type === 'tcp' ? tcp : request);
-	return fn(service.url)
+	return (service.type === 'tcp' ? tcp : request)(service.url)
 		.then(res => {
 			service.running = res.status == 200;
 			service.statusText = res.statusText;
@@ -21,10 +20,6 @@ function pingService (service) {
 			return service;
 		});
 }
-
-//TODO: add TCP services
-//https://riptutorial.com/node-js/example/22406/a-simple-tcp-client
-
 
 
 function healthcheck (req, res) {
