@@ -1,0 +1,56 @@
+@import "lib"
+
+.service-box
+	display flex
+	flex-flow row
+	align-items center
+	justify-content space-between
+	margin 0 -20
+	padding 10 20
+	border-bottom 1px solid dark-color-bg1
+	transition background-color .2s
+	height 80
+	&:hover
+		background-color rgba(dark-color-highlight, .4)
+
+	h3
+		margin 0 0 5
+		font-size 22px
+		font-weight 200
+
+.service-url
+	color inherit
+	font-size 12px
+	color dark-color-text0
+
+.service-box-right
+	text-align right
+
+	.ping
+		font-size 12px
+		width 80
+		text-align center
+		margin-top 10
+		height 10
+
+.service-status
+	text-transform uppercase
+	border-radius 5
+	height 26
+	width 80
+	font-size 14px
+	padding-top 4
+	display flex
+	align-items center
+	justify-content center
+	background color-info
+	transition opacity .3s ease-out, background-color .3s ease-out
+
+	&.loading
+		opacity .7
+
+	&.online
+		background-color color-success
+
+	&.offline
+		background-color color-danger

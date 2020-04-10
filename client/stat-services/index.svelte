@@ -5,28 +5,29 @@
 	</div>
 	<div class="content">
 		{#each data as service}
-		<div>
-			<em>{service.name}</em> {service.url}
-			{#if service.running}
-				<b>ON</b>
-			{:else}
-				<b>OFF</b>
-			{/if}
-			<br>
-			<span>Ping: {service.duration}ms</span>
-		</div>
+			<ServiceBox service="{service}"/>
 		{/each}
 	</div>
 </div>
 
 <script>
+import {onMount} from 'svelte';
+import ServiceBox from '../service-box';
 import {EVENT, get} from '../lib';
 let data = [];
 
-const refresh = async () => data = await get('services');
+
+onMount(() => {
+	EVENT.on(EVENT.refresh.all, refresh);
+	get('services').then(res => data = Object.assign([], data, res));
+	refresh();
+});
 
 
-EVENT.on(EVENT.refresh.all, refresh);
-refresh();
+function refresh () {
+	EVENT.fire(EVENT.refresh.services);
+}
+
+
 
 </script>

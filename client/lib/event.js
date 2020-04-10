@@ -10,6 +10,6 @@ export const EVENT = {
 
 	refresh: {
 		all: 'refresh-all',
-
+		services: 'refresh-services',
 	}
 };
