@@ -5,7 +5,7 @@
 	</div>
 	<div class="content">
 		{#each data as service}
-			<ServiceBox service="{service}"/>
+			<ServiceBox bind:service="{service}"/>
 		{/each}
 	</div>
 </div>
@@ -19,15 +19,21 @@ let data = [];
 
 onMount(() => {
 	EVENT.on(EVENT.refresh.all, refresh);
-	get('services').then(res => data = Object.assign([], data, res));
 	refresh();
 });
 
-
-function refresh () {
-	EVENT.fire(EVENT.refresh.services);
+function mergeData (res) {
+	const _data = [];
+	res.forEach(item => {
+		const oldItem = data.find(i => i.url === item.url);
+		_data.push(Object.assign({}, oldItem, item));
+	});
+	data = _data;
 }
 
-
+function refresh () {
+	get('services').then(mergeData);
+	EVENT.fire(EVENT.refresh.services);
+}
 
 </script>

@@ -1,35 +1,25 @@
+const fs = require('fs-extra');
 const express = require('express');
 const api = express.Router();
-const axios = require('axios');
 const path = require('path');
 const configPath = path.join(process.cwd(), 'config.json');
-const config = require(configPath);
-const TIMEOUT = 2000;
+const {tcp, request} = require('../lib/request');
+let config;
+
+function getConfig () {
+	config = config || fs.readJsonSync(configPath);
+	return config.services;
+}
 
 function pingService (service) {
-	return new Promise(resolve => {
-		const start = new Date();
-		axios(service.url)
-			.then(res => {
-				service.running = res.status == 200;
-				service.statusText = res.statusText;
-				service.duration = (new Date()) - start;
-				resolve(service);
-			})
-			.catch(e => {
-				service.running = false;
-				service.statusText = e.response && e.response.statusText || '';
-				service.duration = (new Date()) - start;
-				resolve(service);
-			});
-		// enforce timeout
-		setTimeout(() => {
-			service.running = false;
-			service.statusText = 'Not found';
-			service.duration = 0;
-			resolve(service);
-		}, TIMEOUT);
-	});
+	const fn = (service.type === 'tcp' ? tcp : request);
+	return fn(service.url)
+		.then(res => {
+			service.running = res.status == 200;
+			service.statusText = res.statusText;
+			service.duration = res.duration;
+			return service;
+		});
 }
 
 //TODO: add TCP services
@@ -38,15 +28,14 @@ function pingService (service) {
 
 
 function healthcheck (req, res) {
-	return pingService({ url: req.params.url })
-		.then(service => res.status(200).json(service));
+	const service = getConfig().find(i => i.url === req.params.url);
+	return pingService(service)
+		.then(serv => res.status(200).json(serv));
 }
 
 function get (req, res) {
-	if (req.params.url) {
-		setTimeout(() => healthcheck(req, res), 1000);
-	}
-	else res.status(200).json(config.services);
+	if (req.params.url) healthcheck(req, res);
+	else res.status(200).json(getConfig());
 }
 
 
