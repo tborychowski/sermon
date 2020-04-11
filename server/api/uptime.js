@@ -1,7 +1,4 @@
-const { readFile, timeAgo } = require('../lib/util');
-const path = require('path');
-
-const uptimeinfo = path.join(process.cwd(), 'proc/uptime');
+const { timeAgo, readDataFile } = require('../lib');
 
 
 function parseInfo (info) {
@@ -10,4 +7,4 @@ function parseInfo (info) {
 }
 
 
-module.exports = () => readFile(uptimeinfo).then(parseInfo);
+module.exports = () => readDataFile('uptime').then(parseInfo);

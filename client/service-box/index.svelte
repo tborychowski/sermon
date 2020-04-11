@@ -22,9 +22,7 @@ export let service = { status: 'loading' };
 let loading = false;
 
 onMount(() => {
-	EVENT.on(EVENT.refresh.all, refresh);
 	EVENT.on(EVENT.refresh.services, refresh);
-	refresh();
 });
 
 

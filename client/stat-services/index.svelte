@@ -1,8 +1,5 @@
 <div class="panel">
-	<div class="title">
-		<h2>Services</h2>
-		<button on:click="{refresh}">Refresh</button>
-	</div>
+	<div class="title"><h2>Services</h2></div>
 	<div class="content">
 		{#each data as service}
 			<ServiceBox bind:service="{service}"/>
@@ -32,8 +29,9 @@ function mergeData (res) {
 }
 
 function refresh () {
-	get('services').then(mergeData);
-	EVENT.fire(EVENT.refresh.services);
+	get('services')
+		.then(mergeData)
+		.then(() => EVENT.fire(EVENT.refresh.services));
 }
 
 </script>

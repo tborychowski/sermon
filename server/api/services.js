@@ -1,14 +1,10 @@
-const fs = require('fs-extra');
 const express = require('express');
 const api = express.Router();
-const path = require('path');
-const configPath = path.join(process.cwd(), 'config.json');
-const {tcp, request} = require('../lib/request');
-let config;
+const {tcp, request, readJsonFile} = require('../lib');
+
 
 function getConfig () {
-	config = fs.readJsonSync(configPath);
-	return config.services;
+	return readJsonFile('config.json').services;
 }
 
 function pingService (service) {

@@ -1,8 +1,5 @@
 <div class="panel">
-	<div class="title">
-		<h2>System</h2>
-		<button on:click="{refresh}">Refresh</button>
-	</div>
+	<div class="title"><h2>System</h2></div>
 	<div class="content system-content">
 		<div class="system-left">
 			<table>
@@ -78,13 +75,16 @@
 </div>
 
 <script>
+import {onMount} from 'svelte';
 import Progressbar from '../progressbar';
 import {EVENT, get} from '../lib';
 let data = {load: []};
 
-const refresh = async () => data = await get('system');
+onMount(() => {
+	EVENT.on(EVENT.refresh.all, refresh);
+	refresh();
+});
 
-EVENT.on(EVENT.refresh.all, refresh);
-refresh();
+const refresh = async () => data = await get('system');
 
 </script>

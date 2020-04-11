@@ -1,9 +1,4 @@
-const { readFile } = require('../lib/util');
-const { EOL } = require('os');
-const path = require('path');
-
-// /etc/os-release
-const fname = path.join(process.cwd(), 'proc/os-release');
+const { EOL, readDataFile } = require('../lib');
 
 
 function parseInfo (str) {
@@ -19,5 +14,5 @@ function parseInfo (str) {
 	return res.name + ' ' + res.version;
 }
 
-
-module.exports = () => readFile(fname).then(parseInfo);
+// /etc/os-release
+module.exports = () => readDataFile('os-release').then(parseInfo);

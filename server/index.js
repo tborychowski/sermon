@@ -1,10 +1,7 @@
-require('dotenv').config();
-
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const logger = require('./lib/logger');
-const {isDev} = require('./lib/util');
+const {isDev, logger} = require('./lib');
 const app = express();
 const port = process.env.PORT || 3000;
 

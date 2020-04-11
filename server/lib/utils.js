@@ -1,11 +1,9 @@
+const { EOL } = require('os');
 const { exec } = require('child_process');
 const fs = require('fs-extra');
+const path = require('path');
 
-const env = process.env.NODE_ENV || 'dev';
-
-const isTest = env === 'test';
-const isDev = (env === 'development' || env === 'dev');
-const isProd = (env === 'production' || env === 'prod');
+const isDev = (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'prod');
 
 function run (cmd) {
 	return new Promise((resolve, reject) => {
@@ -18,6 +16,7 @@ function run (cmd) {
 }
 
 const readFile = name => fs.readFile(name, 'utf8');
+const readJson = name => fs.readJsonSync(name);
 const exists = name => fs.existsSync(name);
 
 function formatBytes (bytes, decimals = 2) {
@@ -50,13 +49,26 @@ function timeAgo (seconds) {
 }
 
 
+function readDataFile (fname) {
+	const p = path.join(process.cwd(), 'config', fname);
+	return readFile(p);
+}
+
+function readJsonFile (fname) {
+	const p = path.join(process.cwd(), 'config', fname);
+	return readJson(p);
+}
+
+
 module.exports = {
+	EOL,
 	isDev,
-	isTest,
-	isProd,
 	run,
 	readFile,
+	readJson,
 	exists,
 	formatBytes,
 	timeAgo,
+	readDataFile,
+	readJsonFile,
 };

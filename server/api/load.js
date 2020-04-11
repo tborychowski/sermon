@@ -1,6 +1,4 @@
-const { readFile } = require('../lib/util');
-const path = require('path');
-const loadAvg = path.join(process.cwd(), 'proc/loadavg');
+const { readDataFile } = require('../lib');
 
 
 function parseInfo (info) {
@@ -8,4 +6,4 @@ function parseInfo (info) {
 }
 
 
-module.exports = () => readFile(loadAvg).then(parseInfo);
+module.exports = () => readDataFile('loadavg').then(parseInfo);

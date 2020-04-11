@@ -1,7 +1,4 @@
-const {EOL} = require('os');
-const path = require('path');
-const {readFile, formatBytes} = require('../lib/util');
-const meminfo = path.join(process.cwd(), 'proc/meminfo');
+const {EOL, readDataFile, formatBytes} = require('../lib');
 
 
 function parseInfo (info) {
@@ -33,4 +30,4 @@ function parseInfo (info) {
 	};
 }
 
-module.exports =  () => readFile(meminfo).then(parseInfo);
+module.exports =  () => readDataFile('meminfo').then(parseInfo);

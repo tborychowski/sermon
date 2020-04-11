@@ -1,10 +1,7 @@
-const {readFile} = require('../lib/util');
-const os = require('os');
-const path = require('path');
-const cpuinfo = path.join(process.cwd(), 'proc/cpuinfo');
+const {EOL, readDataFile} = require('../lib');
 
 function parseInfo (info) {
-	const lines = info.split(os.EOL);
+	const lines = info.split(EOL);
 	const cores = [];
 	let i = 0;
 	lines.forEach(l => {
@@ -23,4 +20,4 @@ function parseInfo (info) {
 	return proc.name;
 }
 
-module.exports = () => readFile(cpuinfo).then(parseInfo);
+module.exports = () => readDataFile('cpuinfo').then(parseInfo);

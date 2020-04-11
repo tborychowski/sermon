@@ -1,5 +1,5 @@
 const winston = require('winston');
-const {isProd} = require('./util');
+const {isProd} = require('./utils');
 
 function print (info) {
 	const {timestamp, level, message} = info;

@@ -1,0 +1,13 @@
+.DS_Store
+*.log
+*.db
+*.md
+.*
+gulpfile.js
+docker-compose.yml
+Dockerfile
+LICENSE
+
+assets/
+client/
+node_modules/

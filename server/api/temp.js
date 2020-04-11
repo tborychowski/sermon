@@ -1,8 +1,5 @@
-const { readFile } = require('../lib/util');
-const path = require('path');
+const { readDataFile } = require('../lib');
+
 
 // /sys/class/thermal/thermal_zone0/temp
-const zoneTemp = path.join(process.cwd(), '/proc/temp');
-
-
-module.exports = () => readFile(zoneTemp).then(t => parseInt(t, 10) / 1000);
+module.exports = () => readDataFile('temp').then(t => parseInt(t, 10) / 1000);

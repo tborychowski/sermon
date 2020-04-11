@@ -1,4 +1,4 @@
-const { run } = require('../lib/util');
+const { run } = require('../lib');
 
 
 function parseInfo (info) {
