@@ -9,10 +9,11 @@ services:
       - "3000:3000"
     volumes:
       - /etc/localtime:/etc/localtime:r
+      - /etc/os-release:/app/config/os-release:r
+      - /sys/class/thermal/thermal_zone0/temp:/app/config/temp:r
       - /proc/cpuinfo:/app/config/cpuinfo:r
       - /proc/loadavg:/app/config/loadavg:r
       - /proc/meminfo:/app/config/meminfo:r
-      - /etc/os-release:/app/config/os-release:r
-      - /sys/class/thermal/thermal_zone0/temp:/app/config/temp:r
       - /proc/uptime:/app/config/uptime:r
+      - /proc/sys/kernel/hostname:/app/config/hostname:r
       - ./config.json:/app/config/config.json:r

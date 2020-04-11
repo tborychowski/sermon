@@ -1,5 +1,5 @@
 <div class="panel">
-	<div class="title"><h2>Services</h2></div>
+	<!-- <div class="title"><h2>Services</h2></div> -->
 	<div class="content">
 		{#each data as service}
 			<ServiceBox bind:service="{service}"/>

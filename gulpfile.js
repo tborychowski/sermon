@@ -98,7 +98,10 @@ function server (done) {
 
 
 function assets () {
-	return src(['assets/**/*.*']).pipe(dest(DIST_PATH));
+	return src([
+		'assets/**/*.*',
+		'node_modules/canvas-gauges/gauge.min.js',
+	]).pipe(dest(DIST_PATH));
 }
 
 function cleanup () {

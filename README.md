@@ -1,7 +1,5 @@
 # sermon
 
 
-docker:
-
-// sync time with host
--v /etc/localtime:/etc/localtime:r
+gauges:
+https://canvas-gauges.com/documentation/examples/

@@ -22,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^7.1.1",
+		"canvas-gauges": "^2.1.7",
 		"del": "^5.1.0",
 		"eslint-plugin-svelte3": "^2.7.3",
 		"gulp": "^4.0.2",

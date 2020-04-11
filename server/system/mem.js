@@ -1,4 +1,4 @@
-const {EOL, readDataFile, formatBytes} = require('../lib');
+const {EOL, readDataFile} = require('../lib');
 
 
 function parseInfo (info) {
@@ -21,12 +21,12 @@ function parseInfo (info) {
 	const memFree = memfree + buffers + cached;
 	const memTotal = data.MemTotal.value || 0;
 	const memUsed = memTotal - memFree;
-	const memPercent = 100 - (Math.round(memFree / memTotal * 100));
+	// const memPercent = 100 - (Math.round(memFree / memTotal * 100));
 	return {
-		memFree: formatBytes(memFree, 1),
-		memTotal: formatBytes(memTotal, 1),
-		memUsed: formatBytes(memUsed, 1),
-		memPercent,
+		memUsed: memUsed / 1000000000,
+		memTotal: memTotal / 1000000000,
+		// memFree: formatBytes(memFree, 1),
+		// memPercent,
 	};
 }
 
