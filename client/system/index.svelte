@@ -5,13 +5,9 @@
 		<div>up: {data.uptime || ''}</div>
 	</div>
 	<div class="content system-content">
-		<Gauge
-			label="Temperature"
-			value="{data.temp}"
-			unit="°C"
-			warn="40"
-			alert="60"
-		/>
+		<Gauge label="1 min" value="{data.load[0]}"/>
+		<Gauge label="5 min" value="{data.load[1]}"/>
+		<Gauge label="15 min" value="{data.load[2]}"/>
 		<Gauge
 			label="RAM"
 			value="{parseFloat(data.memUsed) || 0}"
@@ -19,9 +15,13 @@
 			ticks="0,4,8,12,16,24,28,32"
 			warn="24"
 			alert="28"/>
-		<Gauge label="1 min" value="{data.load[0]}"/>
-		<Gauge label="5 min" value="{data.load[1]}"/>
-		<Gauge label="15 min" value="{data.load[2]}"/>
+		<Gauge
+			label="Temperature"
+			value="{data.temp}"
+			unit="°C"
+			warn="40"
+			alert="60"
+		/>
 	</div>
 </div>
 

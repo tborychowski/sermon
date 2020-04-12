@@ -1,5 +1,4 @@
 <div class="panel">
-	<!-- <div class="title"><h2>Services</h2></div> -->
 	<div class="content">
 		{#each data as service}
 			<ServiceBox bind:service="{service}"/>
@@ -9,7 +8,7 @@
 
 <script>
 import {onMount} from 'svelte';
-import ServiceBox from '../service-box';
+import ServiceBox from './service-box';
 import {EVENT, get} from '../lib';
 let data = [];
 
