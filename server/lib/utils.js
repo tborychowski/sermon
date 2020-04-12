@@ -35,11 +35,10 @@ function timeAgo (seconds) {
 		{ label: 'month', seconds: 2592000 },
 		{ label: 'day', seconds: 86400 },
 		{ label: 'hour', seconds: 3600 },
-		{ label: 'minute', seconds: 60 },
-		{ label: 'second', seconds: 0 }
+		{ label: 'minute', seconds: 60 }
 	];
 	const chunks = [];
-	while (seconds) {
+	while (seconds > 60) {
 		const interval = intervals.find(i => i.seconds < seconds);
 		const count = Math.floor(seconds / (interval.seconds || seconds));
 		chunks.push(`${count} ${interval.label}${count !== 1 ? 's' : ''}`);
