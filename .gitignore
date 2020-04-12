@@ -3,7 +3,7 @@ node_modules/
 _stuff/
 public/
 
-
+notes.md
 .DS_Store
 *.log
 .env

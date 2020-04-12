@@ -7,8 +7,23 @@ function getConfig () {
 	return readJsonFile('config.json').services;
 }
 
+function getUrl (url) {
+	let _url;
+	try { _url = new URL(url); }
+	catch { _url = {}; }
+	return _url;
+}
+
 function pingService (service) {
-	return (service.type === 'tcp' ? tcp : request)(service.url)
+	const url = getUrl(service.url);
+	let fn = request;
+
+	if (url.protocol === 'tcp:') {
+		fn = tcp;
+		service.url = service.url.replace(/^tcp:\/\//ig, '');
+	}
+
+	return fn(service.url)
 		.then(res => {
 			service.running = res.status == 200;
 			service.statusText = res.statusText;

@@ -6,7 +6,7 @@ const Load = require('./load');
 const Release = require('./release');
 const Time = require('./time');
 const Hostname = require('./hostname');
-const IP = require('./ip');
+// const IP = require('./ip');
 
 
 async function get () {
@@ -19,11 +19,11 @@ async function get () {
 		Release(),
 		Time(),
 		Hostname(),
-		IP(),
+		// IP(),
 	];
 	return Promise.all(proms).then(vals => {
-		const [cpu, mem, uptime, temp, load, system, time, hostname, ip] = vals;
-		return { cpu, ...mem, temp, uptime, load, system, time, hostname, ip };
+		const [cpu, mem, uptime, temp, load, system, time, hostname] = vals;
+		return { cpu, ...mem, temp, uptime, load, system, time, hostname };
 	});
 }
 

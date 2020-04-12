@@ -2,7 +2,7 @@ const { run } = require('../lib');
 
 
 function parseInfo (info) {
-	const time = info.split(' ').slice(-2, -1)[0];
+	const time = info.split(' ').slice(4, 1)[0];
 	return time;
 }
 
