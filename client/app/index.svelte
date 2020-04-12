@@ -1,12 +1,10 @@
 <header class="header">
-	<h1><em>Ser</em>ver <em>Mon</em>itor</h1>
-
+	<h1><em>Home</em> (0.0.0.0)</h1>
 	<button on:click="{refresh}">Refresh</button>
 </header>
-<section class="main">
-	<System />
-	<Services />
-</section>
+<System />
+<Services />
+
 
 <script>
 import {EVENT} from '../lib';

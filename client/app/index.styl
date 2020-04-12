@@ -8,7 +8,7 @@ body
 	width 100%
 	overflow hidden
 	background dark-color-bg1
-	color dark-color-text2
+	color dark-color-text0
 
 body
 	font normal 15px sans-serif
@@ -20,10 +20,18 @@ body
 	*
 		box-sizing inherit
 
+	em
+		font-style normal
+		color dark-color-accent
+
+	h1, h2
+		font-weight 200
+	h2
+		margin 0
+
 
 .header
 	background dark-color-bg2
-	color dark-color-text0
 	display flex
 	align-items center
 	justify-content space-between
@@ -32,29 +40,12 @@ body
 	top 0
 	box-shadow 0 2px 5px #0009
 
-	em
-		font-style normal
-		color dark-color-accent
-
-
-
-
-.main
-	color dark-color-text0
-	padding 0 20
-
-	em
-		font-style normal
-		color dark-color-accent
-
 
 .panel
 	background dark-color-bg2
-	color dark-color-text0
-	box-shadow dark-shadow
 	display flex
 	flex-direction column
-	margin 20 auto
+	margin 1 0 0
 
 	.title
 		padding 0 20
@@ -65,11 +56,9 @@ body
 		align-items center
 		justify-content space-between
 
-		h2
-			margin 0
 
 	.content
 		flex 1 1 auto
-		padding 20
+		padding 0
 		color dark-color-text1
 		overflow auto

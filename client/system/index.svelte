@@ -1,6 +1,5 @@
 <div class="panel">
 	<div class="title">
-		<h2><em>{data.hostname || ''}</em> ({data.ip || '0.0.0.0'})</h2>
 		<div>{data.system || ''}</div>
 		<div>up: {data.uptime || ''}</div>
 	</div>
