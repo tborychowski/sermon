@@ -31,7 +31,7 @@ function rollupBuild (inputOptions = {}, outputOptions = {}) {
 		.then(out => {
 			if (!out.code) out = out.output[0];
 			readable.push(out.code);
-			if (outputOptions.sourcemap) {
+			if (outputOptions.output.sourcemap) {
 				readable.push('\n//# sourceMappingURL=');
 				readable.push(out.map.toUrl());
 			}
