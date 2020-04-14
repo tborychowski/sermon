@@ -58,6 +58,12 @@ function readJsonFile (fname) {
 	return readJson(p);
 }
 
+function getUrl (url) {
+	let _url;
+	try { _url = new URL(url); }
+	catch { _url = {}; }
+	return _url;
+}
 
 module.exports = {
 	EOL,
@@ -70,4 +76,5 @@ module.exports = {
 	timeAgo,
 	readDataFile,
 	readJsonFile,
+	getUrl,
 };

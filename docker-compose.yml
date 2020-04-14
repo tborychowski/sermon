@@ -12,10 +12,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/os-release:/app/config/os-release:ro
+
       - /sys/class/thermal/thermal_zone0/temp:/app/config/temp:ro
+
       - /proc/cpuinfo:/app/config/cpuinfo:ro
       - /proc/loadavg:/app/config/loadavg:ro
       - /proc/meminfo:/app/config/meminfo:ro
       - /proc/uptime:/app/config/uptime:ro
       - /proc/sys/kernel/hostname:/app/config/hostname:ro
+
       - ./config.json:/app/config/config.json:ro

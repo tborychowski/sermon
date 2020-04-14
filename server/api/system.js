@@ -4,9 +4,7 @@ const systemData = require('../system');
 
 
 async function get (req, res) {
-	systemData().then(vals => {
-		res.status(200).json(vals);
-	});
+	systemData().then(vals => res.status(200).json(vals));
 }
 
 
