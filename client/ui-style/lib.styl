@@ -39,19 +39,19 @@ padding-top(a) { padding-top: px(a) }
 padding-bottom(a) { padding-bottom: px(a) }
 
 margin() { margin: joinArgs(arguments) }
-margin-left(a) { margin-left: px(a) }
-margin-right(a) { margin-right: px(a) }
-margin-top(a) { margin-top: px(a) }
-margin-bottom(a) { margin-bottom: px(a) }
+margin-left(a) { margin-left: px(arguments) }
+margin-right(a) { margin-right: px(arguments) }
+margin-top(a) { margin-top: px(arguments) }
+margin-bottom(a) { margin-bottom: px(arguments) }
 
 size(w, h=w) { width: px(w); height: px(h); }
-width(n = 0) { width: px(n) }
-height(n = 0) { height: px(n) }
+width(n = 0) { width: px(arguments) }
+height(n = 0) { height: px(arguments) }
 
-top(n = 0) { top: px(n) }
-right(n = 0) { right: px(n) }
-left(n = 0) { left: px(n) }
-bottom(n = 0) { bottom: px(n) }
+top(n = 0) { top: px(arguments) }
+right(n = 0) { right: px(arguments) }
+left(n = 0) { left: px(arguments) }
+bottom(n = 0) { bottom: px(arguments) }
 
 z(n = 0) { z-index: n }
 //*** SHORTCUTS ************************************************************************************
@@ -156,10 +156,14 @@ setBg()
 
 //*** GENERIC HELPERS ******************************************************************************
 px(a)
+	imp = index(arguments, !important) ? !important : unquote('')
 	if type(a) == 'unit'
-		if unit(a) == 'px' || a == 0 { return a } else { return (a + 0px) }
+		if unit(a) == 'px' || a == 0
+			return a imp
+		else
+			return a + 0px imp
 	else
-		return a
+		return a imp
 
 // Joins arguments with space and adds "px" to values if needed
 joinArgs(args)
