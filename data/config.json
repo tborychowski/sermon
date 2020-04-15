@@ -1,5 +1,7 @@
 {
 	"refreshInterval": 5000,
+	"hostname": "Home",
+	"hostip": "192.168.1.10",
 	"services": [
 		{ "name": "Google", "url": "https://google.com" },
 		{ "name": "Facebook", "url": "https://facebook.com" },

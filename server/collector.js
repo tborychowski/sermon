@@ -8,8 +8,8 @@ const getServices = () => readJsonFile('config.json').services || [];
 
 async function collect () {
 	try {
-		const system = await systemData();
 		const services = await Promise.all(getServices().map(pingService));
+		const system = await systemData();
 		const updatedAt = new Date().toJSON();
 		const data = {system, services, updatedAt};
 		logger.debug('data collected');
