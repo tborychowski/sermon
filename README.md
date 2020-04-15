@@ -5,11 +5,13 @@ Server Monitor
 - [x] move all data to store
 - [x] make server run periodically (e.g. every 3 - 5 sec)
 - [x] add service summary (5 online, 1 offline) at the top
+- [x] logo/icon
 - [ ] add `du` for /dev/sd* (as progressbars)
-- [ ] logo/icon
+- [ ] Allow to configure data displayed (e.g. gauges) based on the configured data sources
+- [ ] notifications & alerts
+
 
 #### TODO - Backlog
-- [ ] Allow to configure data displayed (e.g. gauges) based on the configured data sources
 - [ ] log data in a db of sort
 - [ ] show historical data (ping times, uptime)
 - [ ] replace config with edit page

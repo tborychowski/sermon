@@ -17,5 +17,5 @@ function refresh () {
 }
 
 EVENT.on(EVENT.refresh.all, refresh);
-setInterval(refresh, 1000);
+setInterval(refresh, 3000);
 refresh();

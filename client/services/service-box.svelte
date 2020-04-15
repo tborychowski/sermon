@@ -1,17 +1,13 @@
  <div class="service-box">
-	<div class="service-box-left">
-		<h3>{service.name}</h3>
-		<a class="service-url" href="{service.url}" target="_blank">{service.url}</a>
+	<h3><a href="{service.url}" target="_blank">{service.name}</a></h3>
+	<div class="flex-spacer"></div>
+	<div class="ping">
+		{#if service.status === 'online'}
+			{service.duration || 0}ms
+		{/if}
 	</div>
-	<div class="service-box-right">
-		<div class="service-status {service.status || ''}" class:loading="{loading}">
-			{service.status || 'calling'}
-		</div>
-		<div class="ping">
-			{#if service.status === 'online'}
-				Ping: {service.duration || 0}ms
-			{/if}
-		</div>
+	<div class="service-status {service.status || ''}" class:loading="{loading}">
+		{service.status || 'calling'}
 	</div>
 </div>
 
