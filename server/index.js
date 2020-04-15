@@ -1,9 +1,11 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const {isDev, logger} = require('./lib');
+const {isDev, logger, readJsonFile} = require('./lib');
+const collectData = require('./collector');
 const app = express();
 const port = process.env.PORT || 3000;
+const config = readJsonFile('config.json');
 
 function sendView (res, view) {
 	res.sendFile(view, { root: __dirname });
@@ -25,4 +27,7 @@ app.use('/', express.static(path.join(__dirname, '..', 'public')));
 app.use('/', rootPath);
 
 logger.info('--- STARTING -----------------------------------------------------');
+setInterval(collectData, config.refreshInterval || 5000);
+collectData();
+
 app.listen(port, () => logger.info('Server started: http://localhost:' + port));

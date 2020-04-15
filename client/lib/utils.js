@@ -28,10 +28,23 @@ function get (url) {
 	return fetch(`api/${url}`, opts).then(res => res.json());
 }
 
+function dateFormat (dateStr) {
+	let options = {
+		month: 'short',
+		day: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit'
+	};
+	dateStr = dateStr || new Date().toJSON();
+	const d = new Date(dateStr);
+	return d.toLocaleString('en-ie', options);
+}
 
 export {
 	formatNumber,
 	formatBytes,
 	slugify,
 	get,
+	dateFormat,
 };

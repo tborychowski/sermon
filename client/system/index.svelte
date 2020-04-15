@@ -2,6 +2,7 @@
 	<div class="title">
 		<div>{$system.system || ''}</div>
 		<div>up: {$system.uptime || ''}</div>
+		<div>updated at: {$updatedAt || ''}</div>
 	</div>
 	<div class="content system-content">
 		<Gauge label="1 min" value="{$system.load[0]}"/>
@@ -26,5 +27,5 @@
 
 <script>
 import Gauge from '../gauge';
-import {system} from '../store';
+import {system, updatedAt} from '../store';
 </script>
