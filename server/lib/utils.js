@@ -15,8 +15,14 @@ function run (cmd) {
 	});
 }
 
-const readFile = name => fs.readFile(name, 'utf8');
-const readJson = name => fs.readJsonSync(name);
+const readFile = name => {
+	try { return fs.readFile(name, 'utf8'); }
+	catch { return ''; }
+};
+const readJson = name => {
+	try { return fs.readJsonSync(name); }
+	catch { return {}; }
+};
 const writeJson = (name, json) => fs.writeJsonSync(name, json);
 const exists = name => fs.existsSync(name);
 

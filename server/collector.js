@@ -2,7 +2,7 @@ const {logger} = require('./lib');
 const {readJsonFile, writeJsonFile} = require('./lib');
 const systemData = require('./system');
 const pingService = require('./services');
-const getServices = () => readJsonFile('config.json').services;
+const getServices = () => readJsonFile('config.json').services || [];
 
 
 
