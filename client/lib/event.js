@@ -10,6 +10,7 @@ export const EVENT = {
 
 	refresh: {
 		all: 'refresh-all',
-		services: 'refresh-services',
+		before: 'refresh-before',
+		after: 'refresh-after'
 	}
 };

@@ -17,6 +17,7 @@ function run (cmd) {
 
 const readFile = name => fs.readFile(name, 'utf8');
 const readJson = name => fs.readJsonSync(name);
+const writeJson = (name, json) => fs.writeJsonSync(name, json);
 const exists = name => fs.existsSync(name);
 
 function formatBytes (bytes, decimals = 2) {
@@ -49,13 +50,18 @@ function timeAgo (seconds) {
 
 
 function readDataFile (fname) {
-	const p = path.join(process.cwd(), 'config', fname);
+	const p = path.join(process.cwd(), 'data', fname);
 	return readFile(p);
 }
 
 function readJsonFile (fname) {
-	const p = path.join(process.cwd(), 'config', fname);
+	const p = path.join(process.cwd(), 'data', fname);
 	return readJson(p);
+}
+
+function writeJsonFile (fname, json) {
+	const p = path.join(process.cwd(), 'data', fname);
+	return writeJson(p, json);
 }
 
 function getUrl (url) {
@@ -76,5 +82,6 @@ module.exports = {
 	timeAgo,
 	readDataFile,
 	readJsonFile,
+	writeJsonFile,
 	getUrl,
 };

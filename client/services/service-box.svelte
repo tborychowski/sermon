@@ -17,25 +17,13 @@
 
 <script>
 import {onMount} from 'svelte';
-import {EVENT, get} from '../lib';
+import {EVENT} from '../lib';
 export let service = { status: 'loading' };
 let loading = false;
 
 onMount(() => {
-	EVENT.on(EVENT.refresh.services, refresh);
+	EVENT.on(EVENT.refresh.before, () => (loading = true));
+	EVENT.on(EVENT.refresh.after, () => (loading = false));
 });
-
-
-function refresh () {
-	loading = true;
-	get('services/' + encodeURIComponent(service.url))
-		.then(res => {
-			service = Object.assign({}, service, res);
-			if (service.running === true) service.status = 'online';
-			else if (service.running === false) service.status = 'offline';
-			else service.status = 'calling';
-			loading = false;
-		});
-}
 
 </script>

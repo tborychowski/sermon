@@ -5,6 +5,12 @@ const systemData = require('../system');
 const pingService = require('../services');
 const {services} = readJsonFile('config.json');
 
+function getData (req, res) {
+	const data = readJsonFile('data.json');
+	if (data) res.status(200).json(data);
+	else res.status(200).json({});
+}
+
 function getSystem (req, res) {
 	systemData().then(vals => res.status(200).json(vals));
 }
@@ -18,6 +24,9 @@ function getService (req, res) {
 	return pingService(service).then(serv => res.status(200).json(serv));
 }
 
+api.get('/data', getData);
+
+// DEPRECATED
 api.get('/system', getSystem);
 api.get('/services', getAllServices);
 api.get('/services/:url', getService);

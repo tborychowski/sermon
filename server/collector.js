@@ -1,23 +1,16 @@
-const {readJsonFile} = require('./lib');
+const {readJsonFile, writeJsonFile} = require('./lib');
 const systemData = require('./system');
 const pingService = require('./services');
 const getServices = () => readJsonFile('config.json').services;
 
 
-function collectServices () {
-	const services = getServices().map(pingService);
-	Promise.all(services).then(res => {
-		console.log(res);
-	});
+
+async function collect () {
+	const system = await systemData();
+	const services = await Promise.all(getServices().map(pingService));
+	const data = {system, services};
+	// console.log(data);
+	writeJsonFile('data.json', data);
 }
 
-
-function collectSystem () {
-	systemData().then(res => {
-		console.log(res);
-	});
-}
-
-
-collectServices();
-collectSystem();
+collect();
