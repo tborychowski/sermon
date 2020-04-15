@@ -3,6 +3,7 @@ node_modules/
 _stuff/
 public/
 
+data/data.json
 notes.md
 .DS_Store
 *.log
