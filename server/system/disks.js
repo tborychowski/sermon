@@ -35,5 +35,5 @@ function filter (disks) {
 
 module.exports = () => {
 	if (isDev) return readDataFile('df').then(parse).then(filter);
-	else run('df -P').then(parse).then(filter);
+	return run('/bin/df -P').then(parse).then(filter);
 };
