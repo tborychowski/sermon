@@ -23,9 +23,25 @@
 			alert="60"
 		/>
 	</div>
+	<div class="content disks-content">
+		{#each disks as disk}
+			<Progressbar label="{formatLabel(disk)}" progress="{disk.capacity}" />
+		{/each}
+	</div>
 </div>
 
 <script>
 import Gauge from '../gauge';
+import Progressbar from '../progressbar';
 import {system, updatedAt} from '../store';
+
+$:disks = $system.disks || [];
+
+function formatLabel (disk) {
+	return `
+	<span><em>${disk.name}</em></span>
+	<span>used: <em>${disk.used}</em></span>
+	<span>free: <em>${disk.free}</em></span>
+	<span><em>${disk.total}</em></span>`;
+}
 </script>

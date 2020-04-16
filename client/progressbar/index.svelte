@@ -8,8 +8,8 @@
 <script>
 export let label = '';
 export let progress = 0;
-export let warning = 80;
-export let alert = 90;
+export let warning = 100;
+export let alert = 100;
 
 $:barType = progress > alert ? 'alert' : progress > warning ? 'warning' : 'info';
 </script>

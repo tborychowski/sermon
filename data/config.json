@@ -2,6 +2,13 @@
 	"refreshInterval": 5000,
 	"hostname": "Home",
 	"hostip": "192.168.1.10",
+	"disks": [
+		{ "name": "/", "mnt": "/mnt/root" },
+		{ "name": "Store", "mnt": "/mnt/store" },
+		{ "name": "Media", "mnt": "/mnt/media" },
+		{ "name": "Backup", "mnt": "/mnt/backup" },
+		{ "name": "NAS", "mnt": "/mnt/nas" }
+	],
 	"gauges": [
 		{ "name": "1 min",  "source": "loadavg", "field": 0, "warning": 30, "alert": 60 },
 		{ "name": "5 min",  "source": "loadavg", "field": 1, "warning": 30, "alert": 60 },

@@ -21,4 +21,9 @@ services:
       - /proc/uptime:/app/data/uptime:ro
       - /proc/sys/kernel/hostname:/app/data/hostname:ro
 
+      - /:mnt/root:ro
+      - /mnt/backup:/mnt/backup:ro
+      - /mnt/store:/mnt/store:ro
+      - /mnt/media:/mnt/media:ro
+
       - ./config.json:/app/data/config.json:ro

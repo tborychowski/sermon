@@ -6,7 +6,7 @@ Server Monitor
 - [x] make server run periodically (e.g. every 3 - 5 sec)
 - [x] add service summary (5 online, 1 offline) at the top
 - [x] logo/icon
-- [ ] add `du` for /dev/sd* (as progressbars)
+- [x] add `du` for /dev/sd* (as progressbars)
 - [ ] Allow to configure data displayed (e.g. gauges) based on the configured data sources
 - [ ] notifications & alerts
 
