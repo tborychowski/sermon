@@ -1,11 +1,11 @@
 const logger = require('./logger');
 const tcp = require('./tcp');
-const request = require('./request');
+const http = require('./http');
 const utils = require('./utils');
 
 module.exports = {
 	logger,
-	request,
+	http,
 	tcp,
 	...utils,
 };

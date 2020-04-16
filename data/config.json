@@ -10,9 +10,10 @@
 		{ "name": "Temperature", "source": "temp",           "warning": 40, "alert": 60 }
 	],
 	"services": [
+		{ "name": "Confluence", "url": "http://192.168.1.10:8090" },
+		{ "name": "DNS", "url": "tcp://192.168.1.10:53" },
 		{ "name": "Google", "url": "https://google.com" },
 		{ "name": "Facebook", "url": "https://facebook.com" },
-		{ "name": "DNS", "url": "tcp://192.168.1.10:53" },
-		{ "name": "Fake", "url": "https://192.168.1.123" }
+		{ "name": "Fake", "url": "http://192.168.1.123" }
 	]
 }

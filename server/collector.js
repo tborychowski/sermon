@@ -21,3 +21,4 @@ async function collect () {
 }
 
 module.exports = collect;
+// collect();

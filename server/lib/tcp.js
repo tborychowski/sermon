@@ -1,22 +1,21 @@
 const net = require('net');
-const {getUrl} = require('./utils');
 
 const TIMEOUT = 2000;
-const ERROR_RESPONSE = { status: 404, statusText: 'Not found', duration: 0 };
+const ERROR_RESPONSE = { statusCode: 404, duration: 0 };
 
 
 function tcp (url) {
-	const _url = getUrl(url);
-	let port = _url.port || (_url.protocol === 'https:' ? 443 : 80);
+	let port = url.port || (url.protocol === 'https:' ? 443 : 80);
 
 	const client = new net.Socket();
 	client.setTimeout(TIMEOUT);
+
 	return new Promise(resolve => {
 		const start = new Date();
-		client.connect(port, _url.hostname, () => {
+		client.connect(port, url.hostname, () => {
 			const duration = (new Date()) - start;
 			client.destroy();
-			resolve({ status: 200, statusText: 'OK', duration });
+			resolve({ statusCode: 200, duration });
 		});
 		client.on('data', () => client.destroy());
 		client.on('timeout', () => { client.destroy(); resolve(ERROR_RESPONSE); });

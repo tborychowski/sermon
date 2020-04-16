@@ -1,10 +1,13 @@
-const {tcp} = require('../lib');
+const {tcp, http, getUrl} = require('../lib');
 
 
 function pingService (service) {
-	return tcp(service.url)
+	const url = getUrl(service.url);
+	const fn = (url.protocol === 'tcp:' ? tcp : http);
+
+	return fn(url)
 		.then(res => {
-			service.status = (res.status == 200 ? 'online' : 'offline');
+			service.status = (res.statusCode == 200 ? 'online' : 'offline');
 			service.duration = res.duration;
 			return service;
 		});
