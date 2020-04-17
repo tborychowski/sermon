@@ -12,10 +12,10 @@
 		height 19vw
 
 	.disks-content
-		display flex
-		align-items stretch
-		justify-content space-between
-		flex-flow column
 		overflow hidden
-		padding 10 20
-		border-bottom 1px solid dark-color-bg1
+		padding 0 10 10
+		display grid
+		grid-gap 10px
+		align-content space-around
+		justify-content space-between
+		grid-template-columns repeat(auto-fit, minmax(160px, 1fr))

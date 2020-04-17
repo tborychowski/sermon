@@ -1,0 +1,63 @@
+@import "lib"
+
+.disk
+	width 150
+	height 220
+	padding 10
+	margin 0 auto
+	border 2 dark-color-bg1
+	background-color dark-color-bg3
+	border-radius 10
+	position relative
+	overflow hidden
+
+.disk-plate
+	width auto
+	filter drop-shadow(0 0 1px #fff)
+
+.disk-plate-screw
+	size 30
+	border-radius 20
+	position absolute
+	left 58
+	top 58
+	background #fff4
+	z-index 9
+
+.disk-name
+	padding 5 0
+	text-align center
+	font-size 16px
+	font-weight 200
+
+.disk-total
+	text-align center
+	font-size 12px
+
+
+
+
+
+screw-offset = 10
+
+.disk-screw
+	position absolute
+	border-radius 20
+	background-color alpha(dark-color-bg1, 30%)
+	size 10
+
+.disk-screw-tl
+	left screw-offset
+	top screw-offset
+
+.disk-screw-tr
+	top screw-offset
+	right screw-offset
+
+.disk-screw-bl
+	bottom screw-offset
+	left screw-offset
+
+.disk-screw-br
+	bottom screw-offset
+	right screw-offset

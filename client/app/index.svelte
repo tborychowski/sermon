@@ -1,5 +1,7 @@
 <header>
-	<h1><em>{$system.hostname}</em> <small>({$system.hostip})</small></h1>
+	<h1><em>{$system.hostname}</em></h1>
+	<div class="updated-at">updated at: {$updatedAt || ''}</div>
+		<!-- <small>({$system.hostip})</small> -->
 	<Summary/>
 </header>
 <System />
@@ -7,7 +9,7 @@
 <footer></footer>
 
 <script>
-import {system} from '../store';
+import {system, updatedAt} from '../store';
 import System from '../system';
 import Summary from '../summary';
 import Services from '../services';

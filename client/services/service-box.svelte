@@ -1,11 +1,11 @@
  <div class="service-box">
 	<h3><a href="{service.url}" target="_blank">{service.name}</a></h3>
 	<div class="flex-spacer"></div>
-	<div class="ping">
+	<!-- <div class="ping">
 		{#if service.status === 'online'}
 			{service.duration || 0}ms
 		{/if}
-	</div>
+	</div> -->
 	<div class="service-status {service.status || ''}" class:loading="{loading}">
 		{service.status || 'calling'}
 	</div>

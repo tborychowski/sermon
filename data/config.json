@@ -3,7 +3,7 @@
 	"hostname": "Home",
 	"hostip": "192.168.1.10",
 	"disks": [
-		{ "name": "/", "mnt": "/mnt/root" },
+		{ "name": "System", "mnt": "/mnt/root" },
 		{ "name": "Store", "mnt": "/mnt/store" },
 		{ "name": "Media", "mnt": "/mnt/media" },
 		{ "name": "Backup", "mnt": "/mnt/backup" },
