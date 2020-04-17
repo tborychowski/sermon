@@ -8,7 +8,7 @@
 
 <script>
 import {system, updatedAt} from '../store';
-import Summary from '../summary';
+import Summary from './summary';
 
 
 </script>

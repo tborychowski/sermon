@@ -1,4 +1,4 @@
-<div class="gauge">
+<div class="gauge gauge-{size}">
 	<canvas
 		data-type="radial-gauge"
 		data-units="{unit}"
@@ -44,6 +44,7 @@
 </div>
 
 <script>
+export let size='';
 export let label='';
 export let value=0;
 export let min=0;
