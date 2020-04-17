@@ -1,10 +1,20 @@
 @import "lib"
 
+.panel .disks-content
+	overflow hidden
+	padding 20 10 10
+	display grid
+	grid-gap 15px 5px
+	align-content space-around
+	justify-content space-between
+	grid-template-columns repeat(auto-fit, minmax(150px, 1fr))
+
+
 .disk
 	width 150
 	height 220
 	padding 10
-	margin 0 auto
+	margin auto
 	border 2 dark-color-bg1
 	background-color dark-color-bg3
 	border-radius 10

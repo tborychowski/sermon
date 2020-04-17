@@ -1,5 +1,4 @@
 <div class="panel">
-
 	<div class="content system-content">
 		<Gauge label="1 min" value="{$system.load[0]}"/>
 		<Gauge label="5 min" value="{$system.load[1]}"/>
@@ -19,19 +18,10 @@
 			alert="60"
 		/>
 	</div>
-
-	<div class="content disks-content">
-		{#each disks as disk}
-			<Disk data="{disk}"/>
-		{/each}
-	</div>
 </div>
 
 <script>
-import Gauge from '../gauge';
-import Disk from '../disk';
+import Gauge from './gauge';
 import {system} from '../store';
-
-$:disks = $system.disks || [];
 
 </script>
