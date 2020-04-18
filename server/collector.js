@@ -2,6 +2,7 @@ const {logger} = require('./lib');
 const {readJsonFile, writeJsonFile} = require('./lib');
 const systemData = require('./system');
 const pingService = require('./services');
+const alerter = require('./alerter');
 const getServices = () => readJsonFile('config.json').services || [];
 
 
@@ -13,6 +14,7 @@ async function collect () {
 		const updatedAt = new Date().toJSON();
 		const data = {system, services, updatedAt};
 		logger.debug('data collected');
+		alerter(data);
 		writeJsonFile('data.json', data);
 	}
 	catch (e) {

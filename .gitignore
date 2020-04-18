@@ -4,6 +4,7 @@ _stuff/
 public/
 
 data/data.json
+data/config.json
 notes.md
 .DS_Store
 *.log

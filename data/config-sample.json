@@ -1,13 +1,11 @@
 {
 	"refreshInterval": 5000,
-	"hostname": "Home",
-	"hostip": "192.168.1.10",
+	"hostname": "Home Server",
+	"hostip": "192.168.1.1",
+	"slackHook": "https://hooks.slack.com/services/{tokens}",
 	"disks": [
 		{ "name": "System", "mnt": "/mnt/root" },
-		{ "name": "Store", "mnt": "/mnt/store" },
-		{ "name": "Media", "mnt": "/mnt/media" },
-		{ "name": "Backup", "mnt": "/mnt/backup" },
-		{ "name": "NAS", "mnt": "/mnt/nas" }
+		{ "name": "Backup", "mnt": "/mnt/backup" }
 	],
 	"gauges": [
 		{ "name": "1 min",  "source": "loadavg", "field": 0, "warning": 30, "alert": 60 },
@@ -17,8 +15,7 @@
 		{ "name": "Temperature", "source": "temp",           "warning": 40, "alert": 60 }
 	],
 	"services": [
-		{ "name": "Confluence", "url": "http://192.168.1.10:8090" },
-		{ "name": "DNS", "url": "tcp://192.168.1.10:53" },
+		{ "name": "DNS", "url": "tcp://192.168.1.1:53" },
 		{ "name": "Google", "url": "https://google.com" },
 		{ "name": "Facebook", "url": "https://facebook.com" },
 		{ "name": "Fake", "url": "http://192.168.1.123" }
