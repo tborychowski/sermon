@@ -7,8 +7,8 @@ Server Monitor
 - [x] add service summary (5 online, 1 offline) at the top
 - [x] logo/icon
 - [x] add `du` for /dev/sd* (as progressbars)
+- [x] notifications & alerts
 - [ ] Allow to configure data displayed (e.g. gauges) based on the configured data sources
-- [ ] notifications & alerts
 
 
 #### TODO - Backlog

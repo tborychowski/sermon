@@ -15,16 +15,31 @@ function run (cmd) {
 	});
 }
 
-const readFile = name => {
-	try { return fs.readFile(name, 'utf8'); }
-	catch { return ''; }
-};
-const readJson = name => {
-	try { return fs.readJsonSync(name); }
-	catch { return {}; }
-};
-const writeJson = (name, json) => fs.writeJsonSync(name, json);
 const exists = name => fs.existsSync(name);
+
+function readDataFile (fname) {
+	const p = path.join(process.cwd(), 'data', fname);
+	try { return fs.readFile(p, 'utf8'); }
+	catch { return ''; }
+}
+
+function readJsonFile (fname) {
+	const p = path.join(process.cwd(), 'data', fname);
+	try { return fs.readJsonSync(p); }
+	catch { return {}; }
+}
+
+function writeJsonFile (fname, json) {
+	const p = path.join(process.cwd(), 'data', fname);
+	return fs.writeJsonSync(p, json);
+}
+
+
+function compareJson (json1, json2) {
+	json1 = JSON.stringify(json1);
+	json2 = JSON.stringify(json2);
+	return json1 === json2;
+}
 
 function formatBytes (bytes, decimals = 2) {
 	if (bytes === 0) return '0 Bytes';
@@ -55,20 +70,6 @@ function timeAgo (seconds) {
 }
 
 
-function readDataFile (fname) {
-	const p = path.join(process.cwd(), 'data', fname);
-	return readFile(p);
-}
-
-function readJsonFile (fname) {
-	const p = path.join(process.cwd(), 'data', fname);
-	return readJson(p);
-}
-
-function writeJsonFile (fname, json) {
-	const p = path.join(process.cwd(), 'data', fname);
-	return writeJson(p, json);
-}
 
 function getUrl (url) {
 	let _url;
@@ -81,13 +82,12 @@ module.exports = {
 	EOL,
 	isDev,
 	run,
-	readFile,
-	readJson,
 	exists,
-	formatBytes,
-	timeAgo,
 	readDataFile,
 	readJsonFile,
 	writeJsonFile,
+	compareJson,
+	formatBytes,
+	timeAgo,
 	getUrl,
 };
