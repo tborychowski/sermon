@@ -1,5 +1,7 @@
 # SerMon
-Server Monitor
+Extremely simple Server Monitor in a docker container.
+
+![Screemshot](screenshot.png)
 
 ### TODO - Next
 - [x] move all data to store
