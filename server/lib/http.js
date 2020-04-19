@@ -11,7 +11,7 @@ function request (url) {
 		const port = url.port || (isHttps ? 443 : 80);
 		const hostname = url.hostname;
 
-		const req = fn.request({ hostname, port, method: 'GET', timeout: TIMEOUT }, res => {
+		const req = fn.request({ hostname, port, path: url.pathname, method: 'GET', timeout: TIMEOUT }, res => {
 			res.duration = (new Date()) - start;
 			resolve(res);
 		});
