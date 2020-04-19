@@ -3,6 +3,32 @@ Extremely simple Server Monitor in a docker container.
 
 ![Screemshot](screenshot.png)
 
+### Setup
+1. Download `docker-compose.yml` file from this repo.
+2. Create `config.json` file (in the same location), e.g.:
+```json
+{
+	"refreshInterval": 5000,
+	"hostname": "Home Server",
+	"hostip": "192.168.1.1",
+	"notifications": {
+		"slack": "https://hooks.slack.com/services/<web-hook-token>"
+	},
+	"disks": [
+		{ "name": "System", "mnt": "/mnt/root" },
+		{ "name": "Backup", "mnt": "/mnt/backup" }
+	],
+	"services": [
+		{ "name": "DNS", "url": "tcp://192.168.1.1:53" },
+		{ "name": "Google", "url": "https://google.com" },
+		{ "name": "Facebook", "url": "https://facebook.com" },
+		{ "name": "Fake", "url": "http://192.168.1.123" }
+	]
+}
+```
+3. Run `docker-compose up -d`
+4. Open `serverIP:3010` in your favourite Firefox browser :smile:
+
 ### TODO - Next
 - [x] move all data to store
 - [x] make server run periodically (e.g. every 3 - 5 sec)

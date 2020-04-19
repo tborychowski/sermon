@@ -2,17 +2,12 @@
 	"refreshInterval": 5000,
 	"hostname": "Home Server",
 	"hostip": "192.168.1.1",
-	"slackHook": "https://hooks.slack.com/services/{tokens}",
+	"notifications": {
+		"slack": "https://hooks.slack.com/services/<web-hook-token>"
+	},
 	"disks": [
 		{ "name": "System", "mnt": "/mnt/root" },
 		{ "name": "Backup", "mnt": "/mnt/backup" }
-	],
-	"gauges": [
-		{ "name": "1 min",  "source": "loadavg", "field": 0, "warning": 30, "alert": 60 },
-		{ "name": "5 min",  "source": "loadavg", "field": 1, "warning": 30, "alert": 60 },
-		{ "name": "15 min", "source": "loadavg", "field": 2, "warning": 30, "alert": 60 },
-		{ "name": "RAM",    "source": "meminfo",             "warning": 24, "alert": 28 },
-		{ "name": "Temperature", "source": "temp",           "warning": 40, "alert": 60 }
 	],
 	"services": [
 		{ "name": "DNS", "url": "tcp://192.168.1.1:53" },
