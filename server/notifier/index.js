@@ -3,10 +3,10 @@ const slack = require('./slack');
 
 function checkSystem (data) {
 	const failures = [];
-	if (data.load[1] > 60) failures.push('- CPU load is above 60% for more than 5 minutes');
-	if (data.temp > 60) failures.push('- System temperature is above 60°C');
+	if (data.load[1] > 60) failures.push('CPU load is above 60% for more than 5 minutes');
+	if (data.temp > 60) failures.push('System temperature is above 60°C');
 	data.disks.forEach(disk => {
-		if (disk.capacity > 80) failures.push(`- Free space on disk *${disk.name}* is low.`);
+		if (disk.capacity > 80) failures.push(`Free space on disk *${disk.name}* is low.`);
 	});
 	return failures;
 }
@@ -14,7 +14,7 @@ function checkSystem (data) {
 function checkServices (services) {
 	return services
 		.filter(s => s.status === 'offline')
-		.map(s => `- *${s.name}* is down`);
+		.map(s => `*${s.name}* is down`);
 }
 
 

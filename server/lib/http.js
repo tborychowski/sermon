@@ -1,6 +1,6 @@
 const {http, https} = require('follow-redirects');
 
-const TIMEOUT = 2000;
+const TIMEOUT = 5000;
 const ERROR_RESPONSE = { statusCode: 404, duration: 0 };
 
 function request (url) {

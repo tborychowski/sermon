@@ -7,6 +7,10 @@ function pingService (service) {
 
 	return fn(url)
 		.then(res => {
+			if (res.statusCode === 200) return res;
+			return fn(url);	// retry
+		})
+		.then(res => {
 			service.status = (res.statusCode == 200 ? 'online' : 'offline');
 			service.duration = res.duration;
 			return service;

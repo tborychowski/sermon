@@ -37,9 +37,7 @@ Extremely simple Server Monitor in a docker container.
 - [x] add `du` for /dev/sd* (as progressbars)
 - [x] notifications & alerts
 - [ ] Allow to configure data displayed (e.g. gauges) based on the configured data sources
-
-
-#### TODO - Backlog
+- [ ] Allow to configure constraints/alert triggers
 - [ ] log data in a db of sort
 - [ ] show historical data (ping times, uptime)
 - [ ] replace config with edit page
