@@ -1,4 +1,4 @@
-const {readJsonFile, post} = require('../lib');
+const {isDev, readJsonFile, post} = require('../lib');
 const config = readJsonFile('config.json');
 
 const COLORS = {
@@ -27,7 +27,7 @@ function notify (systemFailures, servicesFailures) {
 		attachments.push(makeBlock('success', '*Services*', 'All services are up'));
 	}
 
-	post(config.notifications.slack, {attachments});
+	if (!isDev) post(config.notifications.slack, {attachments});
 }
 
 module.exports = notify;
