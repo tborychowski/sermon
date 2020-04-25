@@ -4,11 +4,11 @@
 	{:else if allDown}
 		<div class="service-status offline blink">All systems down!</div>
 	{:else}
-		{#if online.length}
-			<div class="service-status online"><em>{online.length}</em> online</div>
-		{/if}
 		{#if offline.length}
 			<div class="service-status offline"><em>{offline.length}</em> offline</div>
+		{/if}
+		{#if online.length}
+			<div class="service-status online"><em>{online.length}</em> online</div>
 		{/if}
 	{/if}
 </div>
