@@ -1,5 +1,19 @@
 @import "lib"
 
+.services-panel
+	header
+		cursor pointer
+		&.expanded
+			display none
+		&:hover
+			background-color rgba(dark-color-highlight, .4)
+
+.services-list
+	display none
+
+	&.expanded
+		display block
+
 .service-box
 	display flex
 	flex-flow row
@@ -9,8 +23,6 @@
 	border-bottom 1px solid dark-color-bg1
 	transition background-color .2s
 	height 50
-	&:hover
-		background-color rgba(dark-color-highlight, .4)
 
 	&:last-child
 		border-bottom 0
