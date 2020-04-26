@@ -1,6 +1,6 @@
 @import "lib"
 
-.panel .gauges-content
+.panel-gauges
 	display flex
 	align-items flex-start
 	justify-content space-between
@@ -10,22 +10,22 @@
 	height 20vw
 
 
-.gauge
-	height 26vw
-	margin 0 5
-	display flex
-	align-items center
-	justify-content center
+	.gauge
+		height 26vw
+		margin 0 5
+		display flex
+		align-items center
+		justify-content center
 
-	canvas
-		width 100% !important
-		height 100% !important
+		canvas
+			width 100% !important
+			height 100% !important
 
-.gauge-L
-	flex 1
+	.gauge-L
+		flex 1
 
-.gauge-M
-	flex 0.8
+	.gauge-M
+		flex 0.8
 
-.gauge-S
-	flex 0.7
+	.gauge-S
+		flex 0.7
