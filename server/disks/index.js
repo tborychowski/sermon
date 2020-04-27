@@ -5,13 +5,13 @@ const ignoreFs = ['tmpfs', 'overlay', 'shm'];
 // Filesystem           1024-blocks    Used Available Capacity Mounted on
 function parseLine (line) {
 	let [filesystem, , used, free, capacity, mnt] = line.split(/\s+/);
-	capacity = parseFloat(capacity);
+	const percent = parseFloat(capacity);
 	free = parseFloat(free) * 1024;
 	used = parseFloat(used) * 1024;
 	const total = formatBytes(free + used);
 	free = formatBytes(free);
 	used = formatBytes(used);
-	return {filesystem, used, free, total, capacity, mnt};
+	return {filesystem, used, free, total, percent, mnt};
 }
 
 function parse (data) {

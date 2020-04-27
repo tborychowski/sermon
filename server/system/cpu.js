@@ -20,4 +20,4 @@ function parseInfo (info) {
 	return proc.name;
 }
 
-module.exports = () => readDataFile('cpuinfo').then(parseInfo);
+module.exports = () => readDataFile('proc/cpuinfo').then(parseInfo);

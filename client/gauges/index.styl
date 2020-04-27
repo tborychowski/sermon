@@ -16,16 +16,15 @@
 		display flex
 		align-items center
 		justify-content center
+		flex 0.8
+
+		&:first-child
+		&:last-child
+			flex 0.7
+
+		&:nth-child(3)
+			flex 1
 
 		canvas
 			width 100% !important
 			height 100% !important
-
-	.gauge-L
-		flex 1
-
-	.gauge-M
-		flex 0.8
-
-	.gauge-S
-		flex 0.7

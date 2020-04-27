@@ -1,31 +1,59 @@
 const Cpu = require('./cpu');
 const Mem = require('./mem');
 const Uptime = require('./uptime');
-const Temp = require('./temp');
 const Load = require('./load');
+const Temp = require('./temp');
 const Release = require('./release');
 const Time = require('./time');
-const Host = require('./host');
-const Disks = require('./disks');
+const {readJsonFile, readDataFile} = require('../lib');
+const getSystemConfig = () => readJsonFile('config.json').system || {};
 
-
-async function get () {
+async function getBuiltInData () {
 	const proms = [
 		Cpu(),
 		Mem(),
 		Uptime(),
-		Temp(),
 		Load(),
+		Temp(),
 		Release(),
 		Time(),
-		Host(),
-		Disks(),
 	];
 	return Promise.all(proms).then(vals => {
-		const [cpu, mem, uptime, temp, load, system, time, host, disks] = vals;
-		return { cpu, ...mem, temp, uptime, load, system, time, ...host, disks };
+		const [cpu, mem, uptime, load, temp, system, time] = vals;
+		return { cpu, mem, uptime, load, temp, system, time };
+	});
+}
+
+function getSourceValue (param) {
+	return readDataFile(param.source).then(f => {
+		f = f.trim();
+		if (param.type === 'string') return f;
+		if (param.type === 'number') return parseFloat(f);
 	});
 }
 
 
-module.exports = get;
+async function getData () {
+	const builtIn = await getBuiltInData();
+	const system = getSystemConfig();
+	const defaults = {
+		loadavg1: builtIn.load[0],
+		loadavg5: builtIn.load[1],
+		loadavg15: builtIn.load[2],
+		temp: builtIn.temp,
+	};
+
+	for (let param of system) {
+		if (defaults[param.source]) param.value = defaults[param.source];
+		else if (param.source === 'meminfo') {
+			param.value = builtIn.mem.used;
+			param.max = builtIn.mem.total;
+		}
+		else param.value = await getSourceValue(param);
+	}
+
+	return system;
+}
+
+
+module.exports = getData;

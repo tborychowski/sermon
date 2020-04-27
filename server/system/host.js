@@ -5,6 +5,6 @@ const { readJsonFile } = require('../lib');
 // module.exports = () => readDataFile('hostname').then(hn => hn.trim());
 
 module.exports = () => {
-	const {hostname, hostip } = readJsonFile('config.json');
+	const { hostname, hostip } = readJsonFile('config.json');
 	return { hostname, hostip };
 };

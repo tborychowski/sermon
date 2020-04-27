@@ -11,16 +11,12 @@ services:
       - NODE_ENV=production
     volumes:
       - /etc/localtime:/etc/localtime:ro
+
+      - /proc:/app/data/proc:ro
+      - /sys/class/thermal/thermal_zone0/temp:/app/data/temp:ro
       - /etc/os-release:/app/data/os-release:ro
 
-      - /sys/class/thermal/thermal_zone0/temp:/app/data/temp:ro
-
-      - /proc/cpuinfo:/app/data/cpuinfo:ro
-      - /proc/loadavg:/app/data/loadavg:ro
-      - /proc/meminfo:/app/data/meminfo:ro
-      - /proc/uptime:/app/data/uptime:ro
-      - /proc/sys/kernel/hostname:/app/data/hostname:ro
-
+      # disks
       - /:mnt/root:ro
       - /mnt/backup:/mnt/backup:ro
       - /mnt/store:/mnt/store:ro

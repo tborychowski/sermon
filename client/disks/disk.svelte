@@ -19,7 +19,7 @@
 <script>
 export let data = {};
 
-$:from = data.capacity;
-$:to = 100 - data.capacity;
+$:from = data.percent;
+$:to = 100 - data.percent;
 
 </script>

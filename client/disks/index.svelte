@@ -1,6 +1,6 @@
 <div class="panel">
 	<div class="content disks-content">
-		{#each disks as disk}
+		{#each $disks as disk}
 			<Disk data="{disk}"/>
 		{/each}
 	</div>
@@ -8,8 +8,6 @@
 
 <script>
 import Disk from './disk';
-import {system} from '../store';
-
-$:disks = $system.disks || [];
+import {disks} from '../store';
 
 </script>

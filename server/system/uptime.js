@@ -7,4 +7,4 @@ function parseInfo (info) {
 }
 
 
-module.exports = () => readDataFile('uptime').then(parseInfo);
+module.exports = () => readDataFile('proc/uptime').then(parseInfo);
