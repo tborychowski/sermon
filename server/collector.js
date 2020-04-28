@@ -1,18 +1,24 @@
 const {logger} = require('./lib');
+const disksData = require('./disks');
 const {readJsonFile, writeJsonFile} = require('./lib');
-const systemData = require('./system');
-const pingService = require('./services');
 const notifier = require('./notifier');
-const getServices = () => readJsonFile('config.json').services || [];
+const getSystemData = require('./system');
+const pingService = require('./services');
+const getConfig = () => readJsonFile('config.json') || {};
+const getServices = () => getConfig().services || [];
 
 
 
 async function collect () {
 	try {
+		const system = await getSystemData();
+		const disks = await disksData();
 		const services = await Promise.all(getServices().map(pingService));
-		const system = await systemData();
 		const updatedAt = new Date().toJSON();
-		const data = {system, services, updatedAt};
+		const {hostname, hostip} = getConfig();
+		const meta = {updatedAt, hostname, hostip};
+		const data = {system, disks, services, meta};
+
 		logger.debug('data collected');
 		notifier(data);
 		writeJsonFile('data.json', data);
@@ -24,4 +30,5 @@ async function collect () {
 }
 
 module.exports = collect;
-// collect();
+
+if (require.main === module) collect();

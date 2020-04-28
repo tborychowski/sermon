@@ -1,29 +1,27 @@
-<div class="panel">
-	<div class="content gauges-content">
+<div class="panel panel-gauges">
+	{#each $system as gauge}
 		<Gauge
-			size="S"
-			label="Temperature"
-			value="{$system.temp}"
-			unit="°C"
-			warn="40"
-			alert="60"
-		/>
-		<Gauge
-			size="M"
-			label="RAM"
-			value="{parseFloat($system.memUsed) || 0}"
-			max="{parseFloat($system.memTotal) || 32}"
-			ticks="0,4,8,12,16,24,28,32"
-			warn="24"
-			alert="28"/>
-		<Gauge label="1 min" value="{$system.load[0]}" size="L"/>
-		<Gauge label="5 min" value="{$system.load[1]}" size="M"/>
-		<Gauge label="15 min" value="{$system.load[2]}" size="S"/>
-	</div>
+			label="{gauge.name}"
+			value="{gauge.value || 0}"
+			max="{gauge.max || 100}"
+			unit="{gauge.unit}"
+			warn="{gauge.warning}"
+			alert="{gauge.alert}"
+			ticks="{getTicks(gauge.max)}"
+			/>
+	{/each}
 </div>
 
 <script>
 import Gauge from './gauge';
 import {system} from '../store';
+
+function getTicks (max = 100, min = 0) {
+	const step = Math.ceil((max - min) / 10);
+	return new Array(max < 50 ? 9 : 11)
+		.fill(0)
+		.map((n, i) => Math.ceil(i * step))
+		.join(',');
+}
 
 </script>

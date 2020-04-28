@@ -2,11 +2,22 @@ const {writeJsonFile, readJsonFile, compareJson} = require('../lib');
 const slack = require('./slack');
 
 function checkSystem (data) {
+	return data
+		.map(item => {
+			if (item.value > item.warning) {
+				let name = item.name;
+				if (item.source.includes('loadavg')) name = 'CPU load';
+				const above = (item.value > item.alert ? item.alert : item.warning) + item.unit;
+				return `${name} above ${above}`;
+			}
+		})
+		.filter(item => !!item);
+}
+
+function checkDisks (disks) {
 	const failures = [];
-	if (data.load[1] > 60) failures.push('CPU load is above 60% for more than 5 minutes');
-	if (data.temp > 60) failures.push('System temperature is above 60°C');
-	data.disks.forEach(disk => {
-		if (disk.capacity > 80) failures.push(`Free space on disk *${disk.name}* is low.`);
+	disks.forEach(disk => {
+		if (disk.percent > 80) failures.push(`Free space on disk *${disk.name}* is low.`);
 	});
 	return failures;
 }
@@ -20,9 +31,10 @@ function checkServices (services) {
 
 function notifier (data) {
 	const systemFailures = checkSystem(data.system);
+	const diskFailures = checkDisks(data.disks);
 	const servicesFailures = checkServices(data.services);
 
-	const state = JSON.stringify([...systemFailures, ...servicesFailures]);
+	const state = JSON.stringify([...systemFailures, ...diskFailures, ...servicesFailures]);
 	const oldState = readJsonFile('system-state.json');
 	const same = compareJson(state, oldState);
 	if (!same) {

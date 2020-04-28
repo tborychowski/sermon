@@ -14,11 +14,12 @@ function on (topic, callback) {
 }
 
 function off (handle) {
-	let [topic, cb] = handle, ca = _cache[topic];
-	cb = cb.toString();
+	const [topic, cb] = handle;
+	const cbstr = cb.toString();
+	const ca = _cache[topic];
 	if (ca) {
 		ca.forEach((fn, i) => {
-			if (fn.toString() === cb) ca.splice(i, 1);
+			if (fn.toString() === cbstr) ca.splice(i, 1);
 		});
 	}
 }

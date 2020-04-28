@@ -10,8 +10,10 @@ function parseInfo (info) {
 		name = ('' + name).trim();
 		val = ('' + val).trim();
 		let [value, unit] = val.split(' ');
+		value = value || 0;
+		unit = unit || '';
 		if (unit === 'kB') value *= 1024;
-		data[name] = {value: value || '', unit: unit || ''};
+		data[name] = {value, unit};
 
 	});
 	const memfree = parseFloat(data.MemFree.value);
@@ -23,11 +25,10 @@ function parseInfo (info) {
 	const memUsed = memTotal - memFree;
 	// const memPercent = 100 - (Math.round(memFree / memTotal * 100));
 	return {
-		memUsed: memUsed / 1000000000,
-		memTotal: memTotal / 1000000000,
-		// memFree: formatBytes(memFree, 1),
-		// memPercent,
+		used: memUsed / 1000000000,
+		total: memTotal / 1000000000,
+		free: memFree / 1000000000,
 	};
 }
 
-module.exports =  () => readDataFile('meminfo').then(parseInfo);
+module.exports =  () => readDataFile('proc/meminfo').then(parseInfo);
