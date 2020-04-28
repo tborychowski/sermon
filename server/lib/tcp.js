@@ -5,7 +5,7 @@ const ERROR_RESPONSE = { statusCode: 404, duration: 0 };
 
 
 function tcp (url) {
-	let port = url.port || (url.protocol === 'https:' ? 443 : 80);
+	const port = url.port || (url.protocol === 'https:' ? 443 : 80);
 
 	const client = new net.Socket();
 	client.setTimeout(TIMEOUT);

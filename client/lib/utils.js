@@ -29,7 +29,7 @@ function get (url) {
 }
 
 function dateFormat (dateStr) {
-	let options = {
+	const options = {
 		month: 'short',
 		day: 'numeric',
 		hour: '2-digit',

@@ -32,6 +32,7 @@
 		"eol-last": 1,
 		"no-console": 0,
 		"comma-dangle": 0,
+		"prefer-const": 2,
 		"no-cond-assign": 0
 	}
 }

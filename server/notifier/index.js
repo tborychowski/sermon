@@ -7,7 +7,7 @@ function checkSystem (data) {
 			if (item.value > item.warning) {
 				let name = item.name;
 				if (item.source.includes('loadavg')) name = 'CPU load';
-				let above = (item.value > item.alert ? item.alert : item.warning) + item.unit;
+				const above = (item.value > item.alert ? item.alert : item.warning) + item.unit;
 				return `${name} above ${above}`;
 			}
 		})

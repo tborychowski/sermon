@@ -117,6 +117,7 @@ function watchTask (done) {
 }
 
 const build = parallel(eslint, js, css, assets);
+exports.lint = eslint;
 exports.build = series(cleanup, build);
 exports.server = server;
 exports.default = series(build, watchTask);
