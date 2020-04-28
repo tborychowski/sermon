@@ -1,9 +1,7 @@
-<div class="panel">
-	<div class="content disks-content">
-		{#each $disks as disk}
-			<Disk data="{disk}"/>
-		{/each}
-	</div>
+<div class="panel panel-disks">
+	{#each $disks as disk}
+		<Disk data="{disk}"/>
+	{/each}
 </div>
 
 <script>

@@ -1,4 +1,4 @@
-<div class="gauge gauge-{size}">
+<div class="gauge">
 	<canvas
 		data-type="radial-gauge"
 		data-units="{unit}"
