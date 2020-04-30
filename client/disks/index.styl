@@ -4,6 +4,7 @@
 	overflow hidden
 	padding 20 10 10
 	display grid
+	flex-direction unset
 	grid-gap 15px 5px
 	align-content space-around
 	justify-content space-between
@@ -15,24 +16,30 @@
 	height 220
 	padding 10
 	margin auto
-	border 2 dark-color-bg1
-	background-color dark-color-bg3
+	border 1 dark-color-bg3
+	background-color dark-color-bg1
 	border-radius 10
 	position relative
 	overflow hidden
+
 
 .disk-plate
 	width auto
 	filter drop-shadow(0 0 1px #fff)
 
-.disk-plate-screw
-	size 30
-	border-radius 20
-	position absolute
-	left 58
-	top 58
-	background #fff4
-	z-index 9
+	.donut-ring
+		fill transparent
+		stroke dark-color-bg1
+		stroke-width 20
+
+	.donut-hole
+		fill dark-color-bg2
+
+	.donut-segment
+		fill transparent
+		stroke color-success
+		stroke-width 17
+		stroke-dashoffset 25
 
 .disk-name
 	padding 5 0
@@ -53,7 +60,7 @@ screw-offset = 10
 .disk-screw
 	position absolute
 	border-radius 20
-	background-color alpha(dark-color-bg1, 30%)
+	background-color dark-color-bg2
 	size 10
 
 .disk-screw-tl

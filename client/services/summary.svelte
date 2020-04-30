@@ -1,4 +1,4 @@
-<div class="summary">
+<div class="summary" on:click>
 	{#if allFine}
 		<div class="service-status online">All services online</div>
 	{:else if allDown}

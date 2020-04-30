@@ -1,12 +1,15 @@
 @import "lib"
 
 .panel-services
+	border-bottom dark-color-bg2
+
 	header
 		cursor pointer
 		&.expanded
 			border-bottom dark-color-bg1
-		&:hover
-			background-color rgba(dark-color-highlight, .4)
+
+.summary
+	cursor pointer
 
 
 .service-box
@@ -35,7 +38,6 @@
 				text-decoration underline
 
 	.ping
-		color inherit
 		font-size 12px
 		margin-right 10
 		height 9

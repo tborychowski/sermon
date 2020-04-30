@@ -1,11 +1,8 @@
+<header class:expanded="{expanded}">
+	<h1>Services</h1>
+	<Summary on:click="{() => expanded = !expanded}"/>
+</header>
 <div class="panel panel-services">
-
-	<header class:expanded="{expanded}"
-		on:click="{() => expanded = !expanded}">
-		<h1>Services</h1>
-		<Summary/>
-	</header>
-
 	{#if expanded}
 		<div class="services-list" transition:slide>
 			{#each $services as service}
@@ -13,7 +10,6 @@
 			{/each}
 		</div>
 	{/if}
-
 </div>
 
 <script>
