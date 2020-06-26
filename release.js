@@ -61,16 +61,15 @@ function commit (version) {
 	});
 }
 
-
 function release () {
 	const app = getVersion();
 	APP.name = app.name;
 	let spinner;
-	console.log('\n**************************************');
-	console.log('*                                    *');
+	console.log('\n********************************');
+	console.log('*                              *');
 	console.log(`*      Releasing ${chalk.cyan(APP.name)}        *`);
-	console.log('*                                    *');
-	console.log('**************************************\n');
+	console.log('*                              *');
+	console.log('********************************\n');
 	inquirer
 		.prompt([
 			{
