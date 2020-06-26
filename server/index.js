@@ -25,6 +25,6 @@ app.use('/', (req, res) => {
 
 logger.info('--- STARTING -----------------------------------------------------');
 setInterval(collectData, config.refreshInterval || 5000);
-collectData();
+collectData(true);
 
 app.listen(port, () => logger.info('Server started: http://localhost:' + port));

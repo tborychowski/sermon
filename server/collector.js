@@ -9,7 +9,8 @@ const getServices = () => getConfig().services || [];
 
 
 
-async function collect () {
+async function collect (isInitial = false) {
+	logger.debug('collecting data');
 	try {
 		const system = await getSystemData();
 		const disks = await disksData();
@@ -20,7 +21,7 @@ async function collect () {
 		const data = {system, disks, services, meta};
 
 		logger.debug('data collected');
-		notifier(data);
+		notifier(data, isInitial);
 		writeJsonFile('data.json', data);
 	}
 	catch (e) {

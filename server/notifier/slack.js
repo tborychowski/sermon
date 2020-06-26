@@ -1,27 +1,25 @@
-const {isDev, readJsonFile, post} = require('../lib');
+const {isDev, logger, readJsonFile, post} = require('../lib');
 const config = readJsonFile('config.json');
 
+const APP_TITLE = '*Server*';
 const COLORS = {
 	error: '#8b4848',
 	warning: '#af8a1a',
 	success: '#408062'
 };
 
-function makeBlock (type, title, text) {
-	return { color: COLORS[type], pretext: title, text};
+const makeBlock = (text, type) => ({ color: COLORS[type], pretext: APP_TITLE, text});
+
+function log (msg, type) {
+	if (type === 'success' || type === 'debug') type = 'info';
+	else if (type === 'warning') type = 'warn';
+	logger[type](msg);
 }
 
-function notify (systemFailures, servicesFailures) {
-	const attachments = [];
-	const failures = [...systemFailures, ...servicesFailures];
-	if (failures.length) {
-		attachments.push(makeBlock('error', '*Server*', failures.join('\n')));
-	}
-	else {
-		attachments.push(makeBlock('success', '*Server*', 'Everything is fine'));
-	}
-
-	if (!isDev) post(config.notifications.slack, {attachments});
+function notify (msg, type = 'success') {
+	const attachments = [ makeBlock(msg, type) ];
+	if (isDev) log(msg, type);
+	else post(config.notifications.slack, { attachments });
 }
 
 module.exports = notify;
