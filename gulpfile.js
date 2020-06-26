@@ -5,7 +5,8 @@ const livereload = require('gulp-livereload');
 const DIST_PATH = 'public/';
 const env = process.env.NODE_ENV;
 let isProd = (env === 'production' || env === 'prod');
-const setProd = () => isProd = true;
+
+const setProd = (done) => { isProd = true; done(); };
 
 
 function eslint () {
@@ -43,17 +44,15 @@ function rollupBuild (inputOptions = {}, outputOptions = {}) {
 
 
 function js () {
-	// const commonjs = require('@rollup/plugin-commonjs');
 	const source = require('vinyl-source-stream');
 	const svelte = require('rollup-plugin-svelte');
-	const resolve = require('@rollup/plugin-node-resolve');
+	const {nodeResolve} = require('@rollup/plugin-node-resolve');
 	const {terser} = require('rollup-plugin-terser');
 
 	const inputOptions = {
 		input: './client/index.js',
 		plugins: [
-			// commonjs(),
-			resolve({
+			nodeResolve({
 				extensions: ['.mjs', '.js', '.svelte', '.json'],
 				dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 			}),
