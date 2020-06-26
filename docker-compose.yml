@@ -22,4 +22,4 @@ services:
       - /mnt/store:/mnt/store:ro
       - /mnt/media:/mnt/media:ro
 
-      - ./config.json:/app/data/config.json:ro
+      - ./data:/app/data

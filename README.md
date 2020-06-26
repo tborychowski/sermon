@@ -5,7 +5,8 @@ Extremely simple Server Monitor in a docker container.
 
 ### Setup
 1. Download `docker-compose.yml` file from this repo.
-2. Create `config.json` file (in the same location), e.g.:
+2. Create `data` folder (in the same location).
+3. Create `data/config.json` file, e.g.:
 ```json
 {
 	"refreshInterval": 5000,
