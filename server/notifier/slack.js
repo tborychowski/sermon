@@ -13,18 +13,12 @@ function makeBlock (type, title, text) {
 
 function notify (systemFailures, servicesFailures) {
 	const attachments = [];
-	if (systemFailures.length) {
-		attachments.push(makeBlock('error', '*System*', systemFailures.join('\n')));
+	const failures = [...systemFailures, ...servicesFailures];
+	if (failures.length) {
+		attachments.push(makeBlock('error', '*Server*', failures.join('\n')));
 	}
 	else {
-		attachments.push(makeBlock('success', '*System*', 'Everything is fine'));
-	}
-
-	if (servicesFailures.length) {
-		attachments.push(makeBlock('error', '*Services*', servicesFailures.join('\n')));
-	}
-	else {
-		attachments.push(makeBlock('success', '*Services*', 'All services are up'));
+		attachments.push(makeBlock('success', '*Server*', 'Everything is fine'));
 	}
 
 	if (!isDev) post(config.notifications.slack, {attachments});
