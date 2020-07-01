@@ -25,7 +25,7 @@ function parse (data) {
 }
 
 function filter (disks) {
-	const configDisks = readJsonFile('config.json').disks;
+	const configDisks = readJsonFile('config.json').disks || [];
 	configDisks.forEach(configDisk => {
 		const disk = disks.find(d => d.mnt === configDisk.mnt);
 		if (disk) Object.assign(configDisk, disk);
