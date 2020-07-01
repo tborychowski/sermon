@@ -35,7 +35,7 @@ function notifier (data, isInitial) {
 	const systemFailures = checkSystem(data.system);
 	const diskFailures = checkDisks(data.disks);
 	const servicesFailures = checkServices(data.services);
-	const state = JSON.stringify([...systemFailures, ...diskFailures, ...servicesFailures]);
+	const state = [...systemFailures, ...diskFailures, ...servicesFailures];
 	const failures = [...systemFailures, ...servicesFailures].join('\n');
 
 	const stateExists =  exists(path.join(process.cwd(), 'data', stateFile));

@@ -6,7 +6,10 @@ const Temp = require('./temp');
 const Release = require('./release');
 const Time = require('./time');
 const {readJsonFile, readDataFile} = require('../lib');
-const getSystemConfig = () => readJsonFile('config.json').system || {};
+const getSystemConfig = () => {
+	const json = readJsonFile('config.json');
+	return json.system || {};
+};
 
 async function getBuiltInData () {
 	const proms = [
