@@ -8,7 +8,7 @@ const Time = require('./time');
 const {readJsonFile, readDataFile} = require('../lib');
 const getSystemConfig = () => {
 	const json = readJsonFile('config.json');
-	return json.system || {};
+	return json.system || [];
 };
 
 async function getBuiltInData () {
