@@ -19,7 +19,9 @@ function log (msg, type) {
 function notify (msg, type = 'success') {
 	const attachments = [ makeBlock(msg, type) ];
 	if (isDev) log(msg, type);
-	else post(config.notifications.slack, { attachments });
+	else if (config.notifications) {
+		post(config.notifications.slack, { attachments });
+	}
 }
 
 module.exports = notify;
