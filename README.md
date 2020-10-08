@@ -9,22 +9,29 @@ Extremely simple Server Monitor in a docker container.
 3. Create `data/config.json` file, e.g.:
 ```json
 {
-	"refreshInterval": 5000,
-	"hostname": "Home Server",
-	"hostip": "192.168.1.1",
-	"notifications": {
-		"slack": "https://hooks.slack.com/services/<web-hook-token>"
-	},
-	"disks": [
-		{ "name": "System", "mnt": "/mnt/root" },
-		{ "name": "Backup", "mnt": "/mnt/backup" }
-	],
-	"services": [
-		{ "name": "DNS", "url": "tcp://192.168.1.1:53" },
-		{ "name": "Google", "url": "https://google.com" },
-		{ "name": "Facebook", "url": "https://facebook.com" },
-		{ "name": "Fake", "url": "http://192.168.1.123" }
-	]
+    "refreshInterval": 5000,
+    "hostname": "Home Server",
+    "hostip": "192.168.1.1",
+    "notifications": {
+        "slack": "https://hooks.slack.com/services/<web-hook-token>"
+    },
+    "system": [
+        { "name": "Temperature", "source": "temp",      "unit": "°C", "warning": 40, "alert": 60 },
+        { "name": "RAM",         "source": "meminfo",   "unit": "GB", "warning": 24, "alert": 28 },
+        { "name": "1 min",       "source": "loadavg1",  "unit": "%",  "warning": 30, "alert": 60 },
+        { "name": "5 min",       "source": "loadavg5",  "unit": "%",  "warning": 30, "alert": 60 },
+        { "name": "15 min",      "source": "loadavg15", "unit": "%",  "warning": 30, "alert": 60 }
+    ],
+    "disks": [
+        { "name": "System", "mnt": "/mnt/root" },
+        { "name": "Backup", "mnt": "/mnt/backup" }
+    ],
+    "services": [
+        { "name": "DNS", "url": "tcp://192.168.1.1:53" },
+        { "name": "Google", "url": "https://google.com" },
+        { "name": "Facebook", "url": "https://facebook.com" },
+        { "name": "Fake", "url": "http://192.168.1.123" }
+    ]
 }
 ```
 3. Run `docker-compose up -d`
